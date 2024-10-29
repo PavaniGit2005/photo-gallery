@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Photo Gallery</title>
+    <style>
+    .gallery {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); 
+        gap: 20px; 
+    }
+    .gallery-item {
+        position: relative;
+        overflow: hidden;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        cursor: pointer;
+        background-color: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        padding: 5px; 
+    }
+    .gallery-item img {
+        border-radius: 10px;
+        transition: opacity 0.3s;
+    }
+    .gallery-item img {
+        display: block;
+        max-height: 200px; 
+        height: auto; 
+    }
+    * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #121212;
+            color: #fff;
+            position: relative;
+            line-height: 1.6;
+        }
+
+        .gallery-container {
+            width: 90%;
+            max-width: 1200px;
+            margin: auto;
+            text-align: center;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+            transition: background-color 0.3s ease;
+        }
+
+        .gallery-container:hover {
+            background-color: rgba(255, 255, 255, 0.15);
+        }
+
+        h1, h2 {
+            margin-bottom: 20px;
+            color: #ffffff;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+        .gallery-scroll {
+            overflow-y: auto;
+            max-height: 500px;
+            padding: 10px;
+            border-radius: 10px;
+            background-color: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: opacity 0.3s;
+            border-radius: 10px;
+        }
+
+        .gallery-item img:hover {
+            opacity: 0.9;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: rgba(0, 0, 0, 0.9);
+            justify-content: center;
+            align-items: center;
+            z-index: 10;
+        }
+
+        .modal-content {
+            max-width: 90%;
+            max-height: 90%;
+            padding: 10px;
+        }
+
+        .modal-content img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s ease;
+        }
+
+        .modal-content img:hover {
+            transform: scale(1.05);
+        }
+
+        .close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            font-size: 2em;
+            color: #ffffff;
+            cursor: pointer;
+            user-select: none;
+            transition: color 0.3s;
+        }
+
+        .close:hover {
+            color: #ff4081; 
+        }
+        .btn {
+            padding: 10px 20px;
+            background-color: #ff4081;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #e91e63;
+        }
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 1.8em;
+            }
+
+            h2 {
+                font-size: 1.5em;
+            }
+
+            .close {
+                font-size: 1.5em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="gallery-container">
+        <h1> Photo Gallery</h1>
+
+        <h2>Screenshots</h2>
+        <div class="gallery-scroll">
+            <div class="gallery">
+                <div class="gallery-item" onclick="openModal(this)">
+                    <img src="https://images.pexels.com/photos/270366/pexels-photo-270366.jpeg?cs=srgb&dl=codes-coding-computer-270366.jpg&fm=jpg" alt="Screenshot 1">
+                </div>
+                <div class="gallery-item" onclick="openModal(this)">
+                    <img src="https://tse4.mm.bing.net/th/id/OIP.vlSqXpPPvVIYXW6GPhy0RQHaJ4?w=208&h=277&c=7&r=0&o=5&dpr=1.3&pid=1.7" alt="WhatsApp Image 1">
+                </div>
+                <div class="gallery-item" onclick="openModal(this)">
+                    <img src="https://tse4.mm.bing.net/th/id/OIP.J2TYQgkDUAvwatkFc9ezwAHaF-?pid=ImgDet&w=184&h=148&c=7&dpr=1.3" alt="WhatsApp Image 1">
+                </div>
+                <div class="gallery-item" onclick="openModal(this)">
+                    <img src="https://www.listchallenges.com/f/lists/c990f576-757e-4679-9ce1-bdb341c2da4e.jpg" alt="WhatsApp Image 2">
+                </div>
+            </div>
+        </div>
+
+        <h2>Pictures</h2>
+        <div class="gallery-scroll">
+            <div class="gallery">
+                <div class="gallery-item" onclick="openModal(this)"><img src="https://images.hdqwalls.com/download/nature-sea-sky-skyline-sun-tree-fi-1280x1024.jpg" alt="Picture 1"></div>
+                <div class="gallery-item" onclick="openModal(this)"><img src="https://tse2.mm.bing.net/th/id/OIP.KPp9i2fhDblMUBPh7t8dLAHaGl?w=232&h=180&c=7&r=0&o=5&dpr=1.3&pid=1.7" alt="Picture 2"></div>
+                <div class="gallery-item" onclick="openModal(this)"><img src="https://tse4.mm.bing.net/th/id/OIP.HjY4-XDU5El6yrLcveTjZQHaEH?w=290&h=180&c=7&r=0&o=5&dpr=1.3&pid=1.7" alt="Picture 3"></div>
+            </div>
+        </div>
+
+        <h2>WhatsApp</h2>
+        <div class="gallery-scroll">
+            <div class="gallery">
+                <div class="gallery-item" onclick="openModal(this)"><img src="https://yt3.ggpht.com/a/AATXAJyhXy-NANwcJk7nqPUF4iaQ6SBGHH3_W5r5Yg=s900-c-k-c0xffffffff-no-rj-mo" alt="WhatsApp Image 1"></div>
+                <div class="gallery-item" onclick="openModal(this)"><img src="https://wallpapercave.com/wp/wp7760855.jpg" alt="WhatsApp Image 1"></div>
+                <div class="gallery-item" onclick="openModal(this)"><img src="https://tse4.mm.bing.net/th/id/OIP.unThM0exhzH1yVM0ph0z5wHaLx?&w=160&h=240&c=7&dpr=1.3&pid=ImgDet" alt="WhatsApp Image 1"></div>
+                <div class="gallery-item" onclick="openModal(this)"><img src="https://i.pinimg.com/originals/2a/f2/2c/2af22c2f7c3f8c916c60ceb06df82d6a.jpg" alt="WhatsApp Image 1"></div>
+            </div>
+        </div>
+
+        <h2>Downloads</h2>
+        <div class="gallery-scroll">
+            <div class="gallery">
+                <div class="gallery-item" onclick="openModal(this)"><img src="https://th.bing.com/th?id=OIP.n3sAXxDyR0gM6xT1ZwmXdQHaE8&w=305&h=204&c=8&rs=1&qlt=90&o=6&dpr=1.3&pid=3.1&rm=2" alt="Download Image 1"></div>
+                <div class="gallery-item" onclick="openModal(this)"><img src="https://d1csarkz8obe9u.cloudfront.net/posterpreviews/blue-joyful-general-wellness-flyer-design-tem-template-a2a8644f3852a6b3093556ebe1e1fab9_screen.jpg?ts=1717621314" alt="WhatsApp Image 1"></div>
+                
+            </div>
+        </div>
+
+        <h2>Images</h2>
+        <div class="gallery-scroll">
+            <div class="gallery">
+                <div class="gallery-item" onclick="openModal(this)"><img src="https://tse4.mm.bing.net/th/id/OIP.odH1xtL0kBW_D6VO_mF16QHaLD?w=132&h=198&c=7&r=0&o=5&dpr=1.3&pid=1.7" alt="Image 1"></div>
+                <div class="gallery-item" onclick="openModal(this)"><img src="https://wallpapercave.com/wp/wp1842864.jpg" alt="WhatsApp Image 1"></div>
+                <div class="gallery-item" onclick="openModal(this)"><img src="http://ts2.mm.bing.net/th?id=OIP.pQxt3pV00mmrj_MyzJEUcwHaD6&pid=15.1" alt="WhatsApp Image 1"></div>
+                
+            </div>
+        </div>
+
+        <h2>Camera</h2>
+        <div class="gallery-scroll">
+            <div class="gallery">
+                <div class="gallery-item" onclick="openModal(this)">
+                    <img src="https://th.bing.com/th?id=OIP.CIeGI03X4xbFK1r7Dr25BAHaI4&w=228&h=273&c=8&rs=1&qlt=90&o=6&dpr=1.3&pid=3.1&rm=2" alt="Camera Image 1">
+                </div>
+                <div class="gallery-item" onclick="openModal(this)">
+                    <img src="https://img.freepik.com/premium-photo/photo-children-having-fun-children-playing-outdoor-playground_763111-63529.jpg" alt="Camera Image 2">
+                </div>
+                <div class="gallery-item" onclick="openModal(this)">
+                    <img src="https://cdn.sanity.io/images/tk10onam/production/cbac0bb6ff99e56437fd937d6a9061704408db41-2500x1667.jpg?rect=0,231,2500,1239&q=75&fit=clip&auto=format" alt="Camera Image 3">
+                </div>
+                <div class="gallery-item" onclick="openModal(this)"><img src="https://tse2.mm.bing.net/th/id/OIP.hT_wVpzKIfYT0-2U-0-o_AHaEo?w=275&h=180&c=7&r=0&o=5&dpr=1.3&pid=1.7" alt="WhatsApp Image 1"></div>
+            </div>
+        </div>
+        <div id="myModal" class="modal">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <div class="modal-content">
+                <img id="modalImage" src="" alt="Full-size Image">
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function openModal(element) {
+            const modal = document.getElementById('myModal');
+            const modalImg = document.getElementById('modalImage');
+            modalImg.src = element.querySelector('img').src;
+            modal.style.display = 'flex';
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('myModal');
+            modal.style.display = 'none';
+        }
+    </script>
+</body>
+</html>
